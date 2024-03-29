@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Mailler } from "src/modules/mailler/entities/mailler.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 enum Role {
     ADMIN = 'admin',
     USER = 'user'
@@ -38,4 +39,7 @@ export class User {
         default: false
     })
     status: boolean;
+
+    @OneToMany(() => Mailler, (mailler) => mailler.user)
+    emails: Mailler[]
 }
